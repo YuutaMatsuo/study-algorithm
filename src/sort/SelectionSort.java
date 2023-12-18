@@ -13,7 +13,7 @@ public class SelectionSort {
 		int i, j, tmp, min;
 		for (i = 0; i <= nums.length - 2; i++) {
 			min = i;
-			// 内側のループ：ｊは未整列の範囲の先頭（ i )最後の要素（.length - 1）に向かって後ろへ進む
+			// 内側のループ：ｊは未整列の範囲の先頭（ i )から最後の要素（.length - 1）に向かって後ろへ進む
 			for (j = i; j <= nums.length - 1; j++) {
 				// 仮の最小値を指す変数をminとして、各要素のj番目が仮の最小値よりも小さければminにjを代入する
 				if (nums[j] < nums[min]) {
