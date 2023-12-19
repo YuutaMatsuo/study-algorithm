@@ -5,10 +5,12 @@ import java.util.Random;
 import sort.BubbleSort;
 import sort.InsertionSort;
 import sort.SelectionSort;
+import sort.ShellSort;
 
 public class Main {
 	public static void main(String[] args) {
-		int[] nums = createArray(7000);
+		// ランダムに配列を生成 (引数で渡した数の要素数で生成する）
+		int[] nums = createArray(5000);
 
 		// 並び替え処理
 
@@ -21,21 +23,25 @@ public class Main {
 		// 挿入ソート
 		InsertionSort is = new InsertionSort();
 		int[] insertionSort = is.insertionSort(coppyArray(nums));
+		// シェルソート
+		ShellSort shs = new ShellSort();
+		int[] shellSort = shs.shellSort(coppyArray(nums));
 
 		// 結果出力
 		System.out.println("各種ソートによる配列の並び替え\n");
 		printResult(nums, "並び替え前", 0);
 		System.out.println("-----------------------------------------");
 		printResult(bubbleSort, "バブルソート", bs.time);
-		printResult(selectionSort, "選択ソート", ss.time);
+		printResult(selectionSort, "セレクトソート", ss.time);
 		printResult(insertionSort, "挿入ソート", is.time);
+		printResult(shellSort, "シェルソート", shs.time);
 		System.out.println("-----------------------------------------");
 	}
 
 	// 結果を出力する
 	public static void printResult(int[] nums, String text, long time) {
-		System.out.printf("%-7s経過時間:%6dミリ秒 配列 >>  ", text, time);
-		
+		System.out.printf("%-12s 経過時間:%6dミリ秒 配列 >>  ", text, time);
+
 		// 配列を表示させない場合は下のコードをコメントアウトし、println();のコメントアウトを外してください
 		System.out.println(printArray(nums));
 //		System.out.println();
