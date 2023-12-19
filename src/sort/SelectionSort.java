@@ -1,6 +1,11 @@
 package sort;
 
+import main.Timer;
+
 public class SelectionSort {
+	Timer timer = new Timer();
+	public long time;
+
 	public int[] selectionSort(int[] nums) {
 		// セレクトソート
 
@@ -8,7 +13,10 @@ public class SelectionSort {
 		 * 未整列の範囲を１つずつ後ろへずらしていくための繰り返しと その範囲の中で一番小さい要素の場所を探し出すための繰り返し
 		 * を組み合わせた２重ループの構造になります
 		 */
-		
+
+		// 計測開始
+		timer.start();
+
 		// 外側のループ：配列の最初の要素（i=0)から最後の要素の１つ手前（.length -2)に向かって後ろへ進む
 		int i, j, tmp, min;
 		for (i = 0; i <= nums.length - 2; i++) {
@@ -25,6 +33,9 @@ public class SelectionSort {
 			nums[i] = nums[min];
 			nums[min] = tmp;
 		}
+		// 計測終了
+		timer.end();
+		this.time = timer.calc();
 		return nums;
 	}
 }

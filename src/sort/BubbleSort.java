@@ -1,6 +1,10 @@
 package sort;
 
+import main.Timer;
+
 public class BubbleSort {
+	Timer timer = new Timer();
+	public long time;
 
 	public int[] bubbleSort(int[] nums) {
 		// バブルソート
@@ -9,6 +13,9 @@ public class BubbleSort {
 		 * バブルソートは未整列の範囲を1つずつ後ろへずらして行くための繰り返しと、 その範囲の中で一番小さい要素を先頭に移動するための繰り返しを組み合わせた
 		 * 二重ループの構造になる
 		 */
+
+		// 計測開始
+		timer.start();
 
 		// 外側のループ：配列の最初の要素（i=0) から最後の要素の1つ手前 (.length -2) に向かって後ろに進む
 		for (int i = 0; i <= nums.length - 2; i++) {
@@ -22,6 +29,9 @@ public class BubbleSort {
 				}
 			}
 		}
+		// 計測終了
+		timer.end();
+		this.time = timer.calc();
 		return nums;
 	}
 }
