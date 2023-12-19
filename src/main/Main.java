@@ -8,39 +8,46 @@ import sort.SelectionSort;
 
 public class Main {
 	public static void main(String[] args) {
+		int[] nums = createArray(7000);
 
 		// 並び替え処理
 
 		// バブルソート
 		BubbleSort bs = new BubbleSort();
-		int[] bubbleSort = bs.bubbleSort(createArray(10000));
+		int[] bubbleSort = bs.bubbleSort(coppyArray(nums));
 		// 選択ソート（セレクトソート）
 		SelectionSort ss = new SelectionSort();
-		int[] selectionSort = ss.selectionSort(createArray(10000));
+		int[] selectionSort = ss.selectionSort(coppyArray(nums));
 		// 挿入ソート
 		InsertionSort is = new InsertionSort();
-		int[] insertionSort = is.insertionSort(createArray(10000));
+		int[] insertionSort = is.insertionSort(coppyArray(nums));
 
 		// 結果出力
-
-		System.out.printf("%-8s経過時間:%,10dミリ秒\n", "バブルソート", bs.time);
-		print(bubbleSort);
-		System.out.println("-----------------------------------------\n");
-		System.out.printf("%-8s経過時間:%,10dミリ秒\n", "選択ソート", bs.time);
-		print(selectionSort);
-		System.out.println("-----------------------------------------\n");
-		System.out.printf("%-8s経過時間:%,10dミリ秒\n", "挿入ソート", bs.time);
-		print(insertionSort);
-		System.out.println("-----------------------------------------\n");
+		System.out.println("各種ソートによる配列の並び替え\n");
+		printResult(nums, "並び替え前", 0);
+		System.out.println("-----------------------------------------");
+		printResult(bubbleSort, "バブルソート", bs.time);
+		printResult(selectionSort, "選択ソート", ss.time);
+		printResult(insertionSort, "挿入ソート", is.time);
+		System.out.println("-----------------------------------------");
 	}
 
-	// 配列を出力する
-	public static void print(int[] nums) {
+	// 結果を出力する
+	public static void printResult(int[] nums, String text, long time) {
+		System.out.printf("%-7s経過時間:%6dミリ秒 配列 >>  ", text, time);
+		
+		// 配列を表示させない場合は下のコードをコメントアウトし、println();のコメントアウトを外してください
+		System.out.println(printArray(nums));
+//		System.out.println();
+	}
+
+	// 配列の要素をすべて出力する
+	public static String printArray(int[] nums) {
 		StringBuilder sb = new StringBuilder();
 		for (int num : nums) {
 			sb.append(num + " ");
 		}
-		System.out.println(sb);
+		return sb.toString();
 	}
 
 	// 配列を複製し戻り値として返す
@@ -59,7 +66,7 @@ public class Main {
 		Random random = new Random();
 		int[] nums = new int[num];
 		for (int i = 0; i < num; i++) {
-			nums[i] = random.nextInt(100);
+			nums[i] = random.nextInt(1, 99);
 		}
 		return nums;
 	}
